@@ -1,6 +1,7 @@
 var Tx     = require('ethereumjs-tx').Transaction
 const Web3 = require('web3')
 const web3 = new Web3("https://rinkeby.infura.io/v3/686d75be8bf046229804af38cfab9505")
+const fs = require('fs')
 
 const account1 = '0xA006692006545b5EC7Fa7455A3dF5d13BfB07Fb8' // Your account address 1
 const account2 = '0xD4394cb92A9F346468c9F9ee0d1EA3cd4764085B' // Your account address 2
