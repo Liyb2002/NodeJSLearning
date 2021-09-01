@@ -10,6 +10,10 @@ const fs = require('fs')
 const account1 = '0xA006692006545b5EC7Fa7455A3dF5d13BfB07Fb8' // Your account address 1
 const privateKey1 = Buffer.from(fs.readFileSync('./privateKey.txt', 'utf-8'), 'hex')
 
+//Create Account 
+accountG = web3.eth.accounts.create();
+console.log(accountG)
+
 fs.readFile('./OMGNetwork.txt', 'utf8' , (err, data) => {
   if (err) {
     console.error(err)
@@ -29,7 +33,11 @@ fs.readFile('./OMGNetwork.txt', 'utf8' , (err, data) => {
 
 })
 
+var our_contract_address = "0xd0A1E359811322d97991E03f863a0C30C2cF029C";
+web3.eth.getBalance(our_contract_address).then(function(balance) {
+  console.log(`Balance of ${our_contract_address}: ${balance}`);
+})
 
-//const address = '0xd26114cd6EE289AccF82350c8d8487fedB8A0C07'
+
 
 
