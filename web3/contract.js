@@ -107,5 +107,29 @@ var myContract = new web3.eth.Contract([
 		"type": "function"
 	}
 ], '0x75b5Fa4d83462B6819D382fEbf94900D7308ac67')
-console.log(web3.eth.Contract.transactionConfirmationBlocks    )
-console.log(myContract.options.jsonInterface)
+//console.log(web3.eth.Contract.transactionConfirmationBlocks    )
+//console.log(myContract.options.jsonInterface)
+
+const fs = require('fs')
+var Accounts = require('web3-eth-accounts');
+var accounts = new Accounts(rpcURL);
+var Personal = require('web3-eth-personal')
+
+
+var account1 = web3.eth.accounts.wallet.add({
+    privateKey: '0xb1d21835b13bfab48f27514beea9c673c75baa55d7e8115e2f7dd575dc188ec9',
+    address: '0xA006692006545b5EC7Fa7455A3dF5d13BfB07Fb8'
+});
+
+console.log(account1)
+
+
+
+
+async function addProposalAction (){
+
+const interaction = await myContract.methods.addProposal('hi').call( {from: account1})
+console.log(interaction)
+}
+
+addProposalAction()

@@ -12,4 +12,9 @@ web3.eth.personal.newAccount(password, function (){
     console.log("created account")
 })
 
-web3.eth.personal.getAccounts()
+async function getCurrentAccount() {
+    const accounts = await web3.eth.getAccounts();
+    console.log( accounts[0])
+    return accounts[0];
+}
+getCurrentAccount()
