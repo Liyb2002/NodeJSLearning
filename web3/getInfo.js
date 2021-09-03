@@ -11,6 +11,7 @@ fs.readFile('./OMGNetwork.txt', 'utf8', (function(err, data){
   contract.methods.name().call((err, result) => { console.log(result) })
   contract.methods.symbol().call((err, result) => { console.log(result) })
   contract.methods.balanceOf(data).call((err, result) => { console.log(result) })
+  console.log(contract.options)
 
   }))
 

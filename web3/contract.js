@@ -123,13 +123,4 @@ var account1 = web3.eth.accounts.wallet.add({
 
 console.log(account1)
 
-
-
-
-async function addProposalAction (){
-
-const interaction = await myContract.methods.addProposal('hi').call( {from: account1})
-console.log(interaction)
-}
-
-addProposalAction()
+myContract.methods.addProposal('hi').send({from:'0xA006692006545b5EC7Fa7455A3dF5d13BfB07Fb8'})
