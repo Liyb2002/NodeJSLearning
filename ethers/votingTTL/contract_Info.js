@@ -11,14 +11,5 @@ var wallet = new ethers.Wallet(privateKey,provider);
 
 var contract = new ethers.Contract(address,abi,wallet);
 
-var sendPromise = contract.setValue('Hello World');
-
-sendPromise.then(function(transaction){
-  console.log(transaction);
-});
-
-var callPromise = contract.getValue();
-
-callPromise.then(function(result){
-  console.log(result);
-});
+console.log(contract.address)
+console.log(contract.signer)
