@@ -8,8 +8,18 @@ var abi = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","typ
 var privateKey = 'b1d21835b13bfab48f27514beea9c673c75baa55d7e8115e2f7dd575dc188ec9';
 
 var wallet = new ethers.Wallet(privateKey,provider);
+//console.log(ethers.Wallet.publicKey)
 
 var contract = new ethers.Contract(address,abi,wallet);
-
 console.log(contract.address)
-console.log(contract.signer)
+
+//console.log(contract.address)
+//console.log(contract.signer)
+
+async function getBalance(){
+  var ba = await wallet.getBalance();
+  console.log(ba)
+
+}
+
+//getBalance()
