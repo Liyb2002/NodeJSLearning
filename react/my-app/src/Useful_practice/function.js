@@ -4,21 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-function Form2() {
-  function handleSubmit(e) {
-    e.preventDefault();
-    alert("hhhh");
-  }
 
+function Welcome(props){
+  return <h1>Hello, {props.name}</h1>
+}
+
+function App2(){
   return (
-    <form onSubmit={handleSubmit}>
-      <button type="submit">Submit</button>
-    </form>
-  );
+    <div>
+      <Welcome name = "aa"></Welcome>
+      <Welcome name = "ee"></Welcome>
+
+    </div>
+  )
 }
 
 ReactDOM.render(
-  <Form2></Form2>,
+  <App2></App2>,
   document.getElementById('root')
 )
 // If you want to start measuring performance in your app, pass a function
