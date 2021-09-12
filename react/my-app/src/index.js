@@ -4,7 +4,53 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+function Greetings(props){
+  const isLoggedIn = props.isLoggedIn
+  if(isLoggedIn){
+    return <h1>Welcome back!</h1>
+  }
+  else{
+    return <h1>Please log in</h1>
+  }
+}
 
+class LoginControl extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={isLoggedIn : false}
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+
+  }
+
+  handleLogin(){
+    this.setState({isLoggedIn : false})
+  }
+
+  handleLogout(){
+    this.setState({isLoggedIn : true})
+  }
+
+  render(){
+    const toggle = this.state.isLoggedIn
+    let button
+    if(toggle){
+      button = <button onClick= {this. handleLogin}>login</button>
+    }
+    else{
+      button = <button onClick ={this.handleLogout}>logout</button>
+
+    }
+
+    return (
+      <div>
+        {button}
+        <Greetings isLoggedIn = {toggle}></Greetings>
+      </div>
+    );
+    }
+
+}
 
 ReactDOM.render(
   <LoginControl />,
