@@ -19,12 +19,16 @@ class ToDoList extends React.Component {
 
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
+    this.setState(prevState => ({
+      todoList: [...prevState.todoList, this.state.value]
+    }))
     event.preventDefault();
   }
 
   render() {
     return (
       <div> 
+        <li>{this.state.todoList}</li>
       <input type="text" value={this.state.value} onChange={this.handleChange} />
       <button onClick = {this.handleSubmit}> Add toDo</button>
 
