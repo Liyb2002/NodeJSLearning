@@ -1,46 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
-class ToDoList extends React.Component {
+class Toggle extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: '',
-      todoList: [],
-    };
+    this.state = {unlocked: true};
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+  handleClick() {
+    if(this.state.unlocked){
+      alert("unlocked!")
+    }
     this.setState(prevState => ({
-      todoList: [...prevState.todoList, this.state.value]
-    }))
-    event.preventDefault();
+      unlocked: !prevState.unlocked
+    }));
   }
-
 
   render() {
     return (
-      <div> 
-        <li>{this.state.todoList}</li>
-      <input type="text" value={this.state.value} onChange={this.handleChange} />
-      <button onClick = {this.handleSubmit}> Add toDo</button>
-
-      </div>
- 
+      <button onClick={this.handleClick}>
+        {this.state.unlocked ? 'ON' : 'Locked'}
+      </button>
     );
   }
 }
 
 ReactDOM.render(
-  <ToDoList></ToDoList>,
+  <Toggle />,
   document.getElementById('root')
-)
+);
