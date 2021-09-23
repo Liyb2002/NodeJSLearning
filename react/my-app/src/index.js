@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ImageButton from 'react-image-button';
+import b1 from './img/b1.png';
+import processing from './img/processing.gif';
+
+
 
 
 class Toggle extends React.Component {
@@ -13,9 +16,13 @@ class Toggle extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  getImageShow(){
+    return(this.state.unlocked ? b1:processing)
+  }
+
   handleClick() {
     if(this.state.unlocked){
-      alert("unlocked!")
+      console.log("trading")
     
     this.setState(prevState => ({
       unlocked: false
@@ -25,7 +32,7 @@ class Toggle extends React.Component {
       this.setState(prevState => ({
         unlocked: true
       }));
-    }, 5000);
+    }, 8000);
   
 
   }
@@ -34,13 +41,13 @@ class Toggle extends React.Component {
   }
 
   render() {
+    const imgShow = this.getImageShow()
     return (
-      <ImageButton img='./b1.png' >
+      <div>
+        <img src={imgShow} style={{width: 250, height: 120, position: 'absolute'}}
+        alt="b1" onClick={this.handleClick}></img>
 
-      <button onClick={this.handleClick}>
-        {this.state.unlocked ? 'ON' : 'Locked'}
-      </button>
-      </ImageButton>
+      </div>
 
     );
   }
