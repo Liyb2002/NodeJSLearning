@@ -9,3 +9,4 @@ class Index2(View):
         return HttpResponse('hello i am {0}, age is {1}'.format(name, age))
     
  
+ 
