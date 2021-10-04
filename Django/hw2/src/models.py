@@ -7,7 +7,6 @@ class Test(models.Model):
     age = models.IntegerField()
 
 class User(models.Model):
-    id = models.IntegerField(primary_key=True)
     username = models.CharField(max_length=50, blank=False)
     age = models.SmallIntegerField(default=0)
     phone = models.SmallIntegerField(db_index = True, blank=True, default=0)
@@ -16,12 +15,11 @@ class User(models.Model):
     update_time = models.DateTimeField(auto_now = True)
 
 class Userprofile(models.Model):
-    id = models.IntegerField(primary_key = True)
     user = models.OneToOneField(User, blank=True, null=True, on_delete = models.SET_NULL)
     birthday = models.CharField(max_length=100, blank=True, default='')
 
 class Group(models.Model):
-    id = models.IntegerField(primary_key = True)
+    #id = models.IntegerField(primary_key = True)
     user = models.ManyToManyField(User, related_name='group')
     name = models.CharField(max_length=20)
     create_time = models.IntegerField()
