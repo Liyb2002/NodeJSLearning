@@ -17,6 +17,9 @@ class User(models.Model):
 class Userprofile(models.Model):
     user = models.OneToOneField(User, blank=True, null=True, on_delete = models.SET_NULL)
     birthday = models.CharField(max_length=100, blank=True, default='')
+    
+    def _str_(self):
+        return 'user: {}, birthday"{}'.format(self.user.username, self.birthday)
 
 class Group(models.Model):
     #id = models.IntegerField(primary_key = True)
