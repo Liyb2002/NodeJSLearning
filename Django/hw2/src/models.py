@@ -26,3 +26,11 @@ class Group(models.Model):
     user = models.ManyToManyField(User, related_name='group')
     name = models.CharField(max_length=20)
     create_time = models.IntegerField()
+
+class Message(models.Model):
+    content=models.TextField()
+    message_type=models.CharField(max_length=10, db_index=True)
+    created_time=models.IntegerField(default=0)
+
+    def _str_(self):
+        return 'type: {}, content"{}'.format(self.message_type, self.content)

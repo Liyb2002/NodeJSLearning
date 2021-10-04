@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'hw2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lesson4',
+        'NAME': 'muke_lesson_test',
         'USER': 'root',
         'PASSWORD':'',
         'HOST':'127.0.0.1',
