@@ -8,3 +8,11 @@ class Test(models.Model):
 
     def _str_(self):
         return 'name:{}'.format(self.name)
+
+class Transactions(models.Model):
+    name = models.CharField(max_length=20)
+    price = models.IntegerField()
+    time = models.DateTimeField(auto_now_add=True)
+
+    def _str_(self):
+        return 'name:{}'.format(self.name)
