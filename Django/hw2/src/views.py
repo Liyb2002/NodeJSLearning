@@ -11,6 +11,7 @@ class Index2(View):
  
  class LessonFourPageOne(View):
      def get(self, request):
+         message = Message.objects.all()
          return ''
 
  class LessonFourPageTwo(View):
