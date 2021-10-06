@@ -25,18 +25,9 @@ class showAllPage(View):
     TEMPLATE = 'index.html'
     def get(self, request):
         transactions_all=Transactions.objects.all()
-        nameList=[]
-        priceList=[]
-        timeList=[]
-        for i in transactions_all:
-            nameList.append(i.name)
-            priceList.append(i.price)
-            timeList.append(i.time)
-            
-        
-        data={"name":nameList,
-        "price":priceList, "time":timeList}
+  
 
-        return render(request, self.TEMPLATE, data)
+        return render(request, self.TEMPLATE, 
+        {"transactions_all": Transactions.objects.all() })
 
         #return HttpResponse('hi this is showAll page')
