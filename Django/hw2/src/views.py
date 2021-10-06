@@ -23,4 +23,8 @@ class add(View):
 
 class showAllPage(View):
     def get(self, request):
+        transactions_all=Transactions.objects.all()
+        for i in transactions_all:
+            print(i.price)
+
         return HttpResponse('hi this is showAll page')
