@@ -22,9 +22,21 @@ class add(View):
 
 
 class showAllPage(View):
+    TEMPLATE = 'index.html'
     def get(self, request):
         transactions_all=Transactions.objects.all()
+        nameList=[]
+        priceList=[]
+        timeList=[]
         for i in transactions_all:
-            print(i.price)
+            nameList.append(i.name)
+            priceList.append(i.price)
+            timeList.append(i.time)
+            
+        
+        data={"name":nameList,
+        "price":priceList, "time":timeList}
 
-        return HttpResponse('hi this is showAll page')
+        return render(request, self.TEMPLATE, data)
+
+        #return HttpResponse('hi this is showAll page')
