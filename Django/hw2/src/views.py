@@ -4,16 +4,7 @@ from django.views.generic import View
 
 # Create your views here.
 
+
 class Index2(View):
     def get(self, request, name, age):
         return HttpResponse('hello i am {0}, age is {1}'.format(name, age))
-    
- 
- class LessonFourPageOne(View):
-     def get(self, request):
-         message = Message.objects.all()
-         return ''
-
- class LessonFourPageTwo(View):
-     def get(self, request):
-         return ''
