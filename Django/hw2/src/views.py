@@ -4,7 +4,6 @@ from django.views.generic import View
 from src.models import Test, Transactions
 from datetime import datetime
 
-
 # Create your views here.
 
 
@@ -23,11 +22,18 @@ class add(View):
 
 class showAllPage(View):
     TEMPLATE = 'index.html'
+    
+    #def setInterval(func,time):
+        #e = threading.Event()
+        #while not e.wait(time):
+            #func()
+
+    #def foo():
+        #print ("hello")
+    #setInterval(foo,2)
+
     def get(self, request):
         transactions_all=Transactions.objects.all()
-  
+        return render(request, self.TEMPLATE, {"transactions_all": Transactions.objects.all() })
 
-        return render(request, self.TEMPLATE, 
-        {"transactions_all": Transactions.objects.all() })
-
-        #return HttpResponse('hi this is showAll page')
+        
