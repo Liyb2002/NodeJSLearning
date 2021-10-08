@@ -23,9 +23,10 @@ router = routers.DefaultRouter()
 router.register(r'transactions', views.showAllPage, basename='Transactions')
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(app_urls)),
-    path('api-auth', include('rest_framework.urls')),
+    path('api/', include('rest_framework.urls')),
 ]
 
