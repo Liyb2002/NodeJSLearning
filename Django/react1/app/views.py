@@ -18,9 +18,14 @@ class add(View):
 
 
 class showAllPage(View):
-    TEMPLATE = 'index.html'
+    TEMPLATE = 'showAll.html'
     def get(self, request):
         transactions_all=Transactions.objects.all()
         return render(request, self.TEMPLATE, {"transactions_all": Transactions.objects.all() })
 
-        
+
+class Regist(View):
+    TEMPLATE='regist.html'
+
+    def get(self, request):
+        return render(request, self.TEMPLATE)
