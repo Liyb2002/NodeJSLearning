@@ -9,4 +9,3 @@ class Transactions(models.Model):
 
     def _str_(self):
         return 'name:{}'.format(self.name)
-

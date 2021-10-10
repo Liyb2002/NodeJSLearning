@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import View
 from app.models import Transactions
 from datetime import datetime
 from rest_framework import viewsets
 from .serializers import TransactionSerializer
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -28,4 +30,25 @@ class Regist(View):
     TEMPLATE='regist.html'
 
     def get(self, request):
-        return render(request, self.TEMPLATE)
+        error = request.GET.get('error', '')
+        return render(request, self.TEMPLATE, {'error':error})
+    
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        check_password = request.POST.get('check_password')
+
+        if password!=check_password:
+            return redirect('/regist?error=different_password_when_entering')
+        
+        exist = User.objects.filter(username=username).exist()
+        if exists:
+            return redirect('/regist?error=existing_user')
+        hash_password = make_password(password)
+        User.objects.create_user(
+            username=username,
+            password=hash_password
+        )
+        print(username, password, check_password)
+
+        return redirect('/regist')

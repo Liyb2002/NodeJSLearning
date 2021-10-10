@@ -17,11 +17,12 @@
 <form id="edit-area"
 action="{% url 'regist' %}" method="POST">
 {% csrf_token %}
-  <input type="text" placeholder="username"></input>
-  <input type="password" placeholder="password"></input>
-  <input type="password" placeholder="password confirm"></input>
+  <input name="username" type="text" placeholder="username"></input>
+  <input name="password" type="password" placeholder="password"></input>
+  <input name="check_password" type="password" placeholder="password_confirm"></input>
   <input type="submit" placeholder="submit"></input>
   <input type="reset" placeholder="reset"></input>
+  {{error}}
 </form>
 </body>
 
