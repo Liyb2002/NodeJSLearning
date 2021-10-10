@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.views.generic import View
 from app.models import Transactions
@@ -41,8 +41,8 @@ class Regist(View):
         if password!=check_password:
             return redirect('/regist?error=different_password_when_entering')
         
-        exist = User.objects.filter(username=username).exist()
-        if exists:
+        user_exists = User.objects.filter(username=username).exists()
+        if user_exists:
             return redirect('/regist?error=existing_user')
         hash_password = make_password(password)
         User.objects.create_user(
@@ -51,4 +51,10 @@ class Regist(View):
         )
         print(username, password, check_password)
 
-        return redirect('/regist')
+        return redirect(reverse('login'))
+
+class Login(View):
+    TEMPLATE = 'login.html'
+
+    def get(self, request):
+        return render(request, self.TEMPLATE)
