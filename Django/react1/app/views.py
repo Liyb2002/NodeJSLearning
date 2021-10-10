@@ -1,12 +1,15 @@
-from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponse
-from django.views.generic import View
 from app.models import Transactions
 from datetime import datetime
 from rest_framework import viewsets
 from .serializers import TransactionSerializer
+
+from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponse
+from django.views.generic import View
+
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
@@ -49,7 +52,7 @@ class Regist(View):
             username=username,
             password=hash_password
         )
-        print(username, password, check_password)
+        #print(username, password, check_password)
 
         return redirect(reverse('login'))
 
@@ -58,3 +61,20 @@ class Login(View):
 
     def get(self, request):
         return render(request, self.TEMPLATE)
+    
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user= authenticate(username=username, password=password)
+        if user:
+            login(request, user)
+        else:
+            return redirect("/login?error=login_fail")
+        return redirect('/login')
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+
+        return redirect(reverse('login'))
