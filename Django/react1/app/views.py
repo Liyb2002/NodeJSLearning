@@ -13,6 +13,9 @@ from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
+class mainPage(View):
+    def get(self, request):
+        return HttpResponse('MainPage')
 
 class add(View):
     def get(self, request, name, price):
