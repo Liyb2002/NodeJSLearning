@@ -1,4 +1,4 @@
-from app.models import Transactions
+from app.models import Transactions, Apage
 from datetime import datetime
 from rest_framework import viewsets
 from .serializers import TransactionSerializer
@@ -78,3 +78,9 @@ class Logout(View):
         logout(request)
 
         return redirect(reverse('login'))
+
+class A(View):
+    TEMPLATE='Apage.html'
+    def get(self, request):
+
+        return (request, self.TEMPLATE)

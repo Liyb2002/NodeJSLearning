@@ -9,3 +9,14 @@ class Transactions(models.Model):
 
     def _str_(self):
         return 'name:{}'.format(self.name)
+
+class Apage(models.Model):
+    title=models.CharField(max_length=10)
+
+    def _str_(self):
+        return '{}'.format(self.title)
+    
+    class Meta:
+        permissions =[
+            ('look_a_page', 'can get this page')
+        ]
