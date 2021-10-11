@@ -79,8 +79,8 @@ class Logout(View):
 
         return redirect(reverse('login'))
 
-class A(View):
+class Apage(View):
     TEMPLATE='Apage.html'
+    
     def get(self, request):
-
-        return (request, self.TEMPLATE)
+        return HttpResponse('this is A page')
