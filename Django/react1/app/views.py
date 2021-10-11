@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.views.generic import View
 
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
@@ -83,4 +83,10 @@ class Apage(View):
     TEMPLATE='Apage.html'
     
     def get(self, request):
-        return HttpResponse('this is A page')
+        if not request.user.is_authenticated:
+            return HttpResponse("you do not have access")
+        
+        a_permission = Permission.objects.get(codename='look_a_page')
+        if not request.user.has_perm(a_permission):
+            return HttpResponse('you have no permission to visit')
+        return render(request, self.TEMPLATE)
