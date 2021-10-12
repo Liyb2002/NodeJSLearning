@@ -110,6 +110,8 @@ class ethShow(View):
         totalSupply = contract.functions.totalSupply().call()
 
         return render(request, self.TEMPLATE,
-        {"balance":web3.fromWei(balance, "ether"), 
+        {
+        "blockNum":web3.eth.blockNumber,
+        "balance":web3.fromWei(balance, "ether"), 
         "totalSupply":web3.fromWei(totalSupply, 'ether'),
         "tokenSymbol":contract.functions.name().call()})
