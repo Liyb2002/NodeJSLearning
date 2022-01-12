@@ -1,6 +1,5 @@
 # syntax=docker/dockerfile:1
 FROM node:12-alpine
-RUN apk add --no-c ache python2 g++ make
 WORKDIR /app
 COPY . .
 RUN yarn install --production
